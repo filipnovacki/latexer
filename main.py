@@ -2,6 +2,7 @@
 # This script generater LaTeX files
 
 import argparse
+import sys
 from Logic.Compositor import Compositor
 
 parser = argparse.ArgumentParser(description='Start a LaTeX file. Allows a lot of default customization'
@@ -35,6 +36,10 @@ parser.add_argument('-lang',
 
 parser.add_argument('title',
                     help='Title of the paper')
+
+if len(sys.argv) == 1:
+    parser.print_help(sys.stderr)
+    sys.exit(1)
 
 # comp = Compositor()
 args = parser.parse_args()
