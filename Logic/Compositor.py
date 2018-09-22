@@ -1,36 +1,39 @@
+import jinja2
+
+
 class Compositor:
     def __init__(self, args):
-        self.other_data = '''
+        env = jinja2.Environment()
+        self.latex_code = env.from_string('''
+\\documentclass[ {{font_size}}, a4paper] { {{doc_type}} } 
 \\usepackage[utf8]{inputenc}
+\\usepackage[ {{language}} ]{babel}
+%TODO: more usepackages through loop
+\\title{ {{title_name}} }
 
-% Font:
-% \\usepackage{palatino}
-% \\usepackage{bookman}
-
-        '''
-        self.beginstart = '''
 \\begin{document}
 \\maketitle
 \\tableofcontents
+
+
+
 \\end{document}
-        '''
+ 
+''')
 
         args = vars(args)
-        self.doc_class = '\\documentclass[10pt, a4paper] {} '.format('{' + args['doc_type'] + '}')
-        self.lang = '\\usepackage[{}'.format(args['language'] + ']{babel}')
-        self.title = '\\title{}'.format('{' + args['title'] + '}')
 
-        # print(self)
+        self.latex_code = self.latex_code.render(
+            language=args['language'],
+            title_name=args['title'],
+            font_size=args['font_size'],
+            doc_type=args['doc_type']
+        )
+
         self.print_latex()
 
     def print_latex(self):
-        file = self.doc_class + \
-               self.lang + \
-               self.other_data + \
-               self.title + \
-               self.beginstart
-
-        print(file)
+        print(self.latex_code)
 
     def __str__(self):
         return 'LaTeX document called ' + self.title.lstrip('\\title{').rstrip('}')
