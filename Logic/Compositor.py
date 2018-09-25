@@ -5,7 +5,7 @@ class Compositor:
     def __init__(self, args):
         env = jinja2.Environment()
         self.latex_code = env.from_string('''
-\\documentclass[ {{font_size}}, a4paper] { {{doc_type}} } 
+\\documentclass[{{font_size}}, a4paper]{ {{doc_type}}'}' 
 \\usepackage[utf8]{inputenc}
 \\usepackage[ {{language}} ]{babel}
 %TODO: more usepackages through loop
@@ -26,7 +26,7 @@ class Compositor:
         self.latex_code = self.latex_code.render(
             language=args['language'],
             title_name=args['title'],
-            font_size=args['font_size'],
+            font_size=str(args['font_size']) + 'pt',
             doc_type=args['doc_type']
         )
 
