@@ -4,10 +4,7 @@
 import argparse
 from Logic.Compositor import Compositor
 
-parser = argparse.ArgumentParser(description='Start a LaTeX file. Allows a lot of default customization'
-                                             'by using arguments. The defaults are set to suit my needs. '
-                                             'I only tested it for articles, books, reoprts and similiar '
-                                             'documents. Beamer might come some day')
+parser = argparse.ArgumentParser(description='Creates empty LaTeX document.')
 parser.add_argument('-fs',
                     '--font_size',
                     type=int,

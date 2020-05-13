@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-python ~/PycharmProjects/latexer/main.py "$@"
