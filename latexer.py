@@ -2,7 +2,7 @@
 # This script generater LaTeX files
 
 import argparse
-from Logic.Compositor import Compositor
+from Compositor import Compositor
 
 parser = argparse.ArgumentParser(description='Creates empty LaTeX document.')
 parser.add_argument('-fs',
